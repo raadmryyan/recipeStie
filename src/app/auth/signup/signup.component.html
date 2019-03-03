@@ -1,0 +1,62 @@
+
+<div class="container login-container">
+    <div class="row ">
+        <div class="col-md-6 login-form-1 center">
+            <h3>Sign Up Form </h3>
+            <form #signin='ngForm' (ngSubmit)="submit(signin)">
+                <div class="form-group">
+                    <input type="text"
+                    class="form-control" 
+                    placeholder="Your Email *" 
+                    name='email' 
+                    ngModel 
+                    required
+                    email
+                    #email='ngModel'/>
+                </div>
+                <div class="alert alert-danger"
+                *ngIf="!email.valid && email.touched">
+               <strong> Email is invalid or Empty</strong> 
+              </div>
+                <div class="form-group">
+                    <input type="password" 
+                    class="form-control" 
+                    placeholder="Your Password *" name="password" 
+                    ngModel
+                    required
+                    #password='ngModel'/>
+                </div>
+                <div class="alert alert-danger fade in"
+                *ngIf="!password.valid && password.touched">
+               <strong> Password is required</strong> 
+              </div>
+                <div class="form-group">
+                        <input type="password" 
+                        class="form-control" 
+                        placeholder="Confirm Your Password *" name="Confirmpassword" 
+                        ngModel
+                        required
+                        #ConfirmPassword='ngModel'/>
+                    </div>
+                    <div class="alert alert-danger fade in"
+                    *ngIf="!ConfirmPassword.valid && ConfirmPassword.touched">
+                   <strong> Confirm Password is required</strong> 
+                  </div>
+                  <div class="alert alert-danger"
+                  *ngIf="(ConfirmPassword.value !='' 
+                    && password.value != '') && ConfirmPassword.value != password.value">
+                 <strong> Password should match Confirm Password</strong> 
+                </div>
+                <div class="form-group">
+                    <input type="submit" 
+                    [disabled]='!signin.valid || ConfirmPassword.value != password.value'
+                    class="btn-large btn-block btn-primary" value="Register" />
+                </div>
+                <div class="alert alert-danger"
+                *ngIf="MessageError != ''"> {{MessageError}}</div>
+                
+              </form>
+        </div>
+       
+        </div>
+    </div>

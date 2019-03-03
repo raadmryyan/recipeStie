@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-xs-12">
+      
+    <button class="btn btn-success btn-block" (click)="onNewRecipe()">New Recipe</button>
+    <hr/>
+    <div class="form-group">
+        <input
+          type="text"
+          id="search"
+          placeholder="Search"
+          class="form-control"
+          [(ngModel)]="search">
+<label class="radio-inline"><input type="radio" [(ngModel)]='criterion' value="name" name="searchCr" >By Name</label>
+<label class="radio-inline"><input type="radio" [(ngModel)]='criterion' value ="description"name="searchCr">By decription</label>
+<label class="radio-inline"><input type="radio" [(ngModel)]='criterion' value ="ingredients"name="searchCr">By Ingredients</label>
+
+      </div>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <app-recipe-item
+      *ngFor="let recipeEl of recipes  | filter : search :criterion "
+      [recipe]="recipeEl"
+      [index]="recipeEl.id"></app-recipe-item>
+  </div>
+
+</div>
+
